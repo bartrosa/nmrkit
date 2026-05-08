@@ -61,6 +61,18 @@ explicit_package_bases = true
 mypy_path = "src"
 packages = ["nmrkit"]
 
+[[tool.mypy.overrides]]
+module = "nmrglue.*"
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = "scipy.*"
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = "sklearn.*"
+ignore_missing_imports = true
+
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 addopts = "-q --cov=nmrkit --cov-report=term-missing --import-mode=importlib"
