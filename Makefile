@@ -1,4 +1,4 @@
-.PHONY: install install-mps test lint format check clean
+.PHONY: install install-mps test lint format check clean validate-synthetic
 
 install:
 	uv sync
@@ -23,6 +23,12 @@ check:
 	uv run ruff format --check .
 	uv run mypy src/
 	uv run pytest
+
+validate-synthetic:
+	uv run python examples/validate_dataset.py \
+		--data-dir tests/fixtures/synthetic_timeseries \
+		--output-dir validation_output_synthetic
+	test -f validation_output_synthetic/summary.png
 
 clean:
 	rm -rf .pytest_cache .ruff_cache .mypy_cache htmlcov .coverage
