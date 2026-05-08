@@ -65,6 +65,10 @@ packages = ["nmrkit"]
 module = "nmrglue.*"
 ignore_missing_imports = true
 
+[[tool.mypy.overrides]]
+module = "scipy.*"
+ignore_missing_imports = true
+
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 addopts = "-q --cov=nmrkit --cov-report=term-missing --import-mode=importlib"
